@@ -1,0 +1,45 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void display(string arr[]) {
+    for (size_t i = 0; i < 5; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+int getMaxIndex(string arr[], int start) {
+    int min  = start;
+    for (int i = start; i < 5; i++) {
+        if(arr[i] < arr[min]) {
+            min = i;
+        }
+    }
+    return min;
+}
+int main() {
+    system("cls");
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */    
+    int N;
+    cin >> N;
+    if(N == 5) {
+        string arr[N];
+        for (int i = 0; i < N; i++)
+        {
+            cin >> arr[i];
+        }
+        
+        for (int i = 0; i < N - 1; i++) {
+            int min = getMaxIndex(arr, i);
+            string temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
+            display(arr);
+        }
+    }
+    return 0;
+}
